@@ -76,9 +76,9 @@ html, body {
   display: block;
   margin: 0 auto 0.5rem;
   // width: min(70vw, 260px);
-  width:100%;
+  width: 100%;
   height: auto;
-  margin-top:-35%;
+  margin-top: -35%;
 }
 
 .home__subtitle {
@@ -127,8 +127,7 @@ html, body {
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
-    filter: invert(1);   /* black → white, white → black */
-
+  filter: invert(1);   /* black → white, white → black */
 }
 
 /* Individual icons (paths relative to this SCSS file) */
@@ -138,8 +137,7 @@ html, body {
 
 .icon--youtube {
   background-image: url("../assets/icons/youtube.svg");
-    filter: invert(1) brightness(100);   /* black → white, white → black */
-
+  filter: invert(1) brightness(100);   /* extra tweak you added */
 }
 
 .icon--instagram {
@@ -163,7 +161,7 @@ html, body {
 }
 
 .icon--tikTok {
-    background-image: url("../assets/icons/tik-tok-logo.svg");
+  background-image: url("../assets/icons/tik-tok-logo.svg");
 }
 
 /* ===== Larger screens tweaks ===== */
@@ -180,5 +178,116 @@ html, body {
 
   .home__logo {
     width: min(320px, 40vw);
+    margin-top: 0; // optional on larger screens so it’s not so high
   }
+}
+
+/* ===== Hamburger menu ===== */
+
+.hamburger {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  z-index: 30;
+
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 9999px;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  background: rgba(0, 0, 0, 0.4);
+
+  display: flex;
+  flex-direction: column;     /* stack bars vertically */
+  align-items: center;
+  justify-content: center;
+  gap: 4px;                   /* even spacing between bars */
+
+  padding: 0;
+  cursor: pointer;
+
+  transition:
+    background 0.15s ease-out,
+    border-color 0.15s ease-out;
+}
+
+.hamburger:hover,
+.hamburger:focus-visible {
+  background: rgba(0, 0, 0, 0.7);
+  border-color: rgba(255, 255, 255, 0.9);
+}
+
+.hamburger span {
+  display: block;
+  width: 1.4rem;              /* bar length */
+  height: 2px;                /* bar thickness */
+  border-radius: 9999px;
+  background: #ffffff;
+  transition:
+    transform 0.2s ease-out,
+    opacity 0.2s ease-out;
+}
+
+
+/* open state (X icon) */
+.hamburger--open span:nth-child(1) {
+  transform: translateY(6px) rotate(45deg);
+}
+
+.hamburger--open span:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburger--open span:nth-child(3) {
+  transform: translateY(-6px) rotate(-45deg);
+}
+
+
+/* mobile menu overlay */
+.mobile-menu {
+  position: fixed;
+  inset: 0;
+  z-index: 20;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: rgba(0, 0, 0, 0.9);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease-out;
+}
+
+.mobile-menu--open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.mobile-menu__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}
+
+.mobile-menu__item {
+  margin: 0.4rem 0;
+}
+
+.mobile-menu__item a {
+  font-size: 1.4rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: #ffffff;
+}
+
+.mobile-menu__item a:hover,
+.mobile-menu__item a:focus-visible {
+  text-decoration: underline;
+}
+
+/* optional: prevent scroll when menu open */
+.home--menu-open {
+  overflow: hidden;
 }
