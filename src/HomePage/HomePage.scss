@@ -1,69 +1,184 @@
-/* ---- layout ---- */
+/* HomePage.scss */
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+/* Visually hidden but accessible text (for the h1) */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ===== Layout / hero ===== */
+
 .home {
-  min-height: 100dvh;
+  min-height: 100vh;
+}
+
+/* container that holds the background image + overlay */
+.home__hero {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  overflow: hidden;
+}
+
+/* full-bleed background photo */
+.home__hero-photo {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* overlay: everything sits on top of the photo */
+.home__overlay {
+  position: relative;
+  z-index: 1;
+  min-height: 100vh;
+
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 18px;
-  padding: 28px 16px 40px;
-  max-width: 560px;
-  margin: 0 auto;
+  // justify-content: space-between;
+
+  padding: 1.75rem 1rem 2.5rem;
+  color: #ffffff;
+
+  /* darken the photo a bit so logo/icons pop */
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.75) 0%,
+    rgba(0, 0, 0, 0.35) 40%,
+    rgba(0, 0, 0, 0.85) 100%
+  );
 }
 
-.home__header { text-align: center; }
-.home__title  { margin: 0; font-size: 2.2rem; line-height: 1.1; }
-.home__subtitle { margin: 6px 0 0; color: #64748b; font-size: 0.95rem; }
-
-/* ---- icon grid ---- */
-.home__links.icons-only {
+.home__header {
   width: 100%;
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 14px;
-  justify-items: center;
-  grid-auto-rows: min-content;
-  margin-top: 8px;
+  max-width: 420px;
+  margin: 0 auto;
+  text-align: center;
 }
-@media (min-width: 480px) { .home__links.icons-only { grid-template-columns: repeat(4, minmax(0,1fr)); } }
-@media (min-width: 768px) { .home__links.icons-only { grid-template-columns: repeat(7, minmax(0,1fr)); } }
+
+/* ===== Logo + subtitle ===== */
+
+.home__logo {
+  display: block;
+  margin: 0 auto 0.5rem;
+  // width: min(70vw, 260px);
+  width:100%;
+  height: auto;
+  margin-top:-35%;
+}
+
+.home__subtitle {
+  margin-top: 0.25rem;
+  font-size: 0.9rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #f5f5f5;
+}
+
+/* ===== Icon links ===== */
+
+.home__links {
+  /* sits toward the bottom because overlay uses justify-content: space-between */
+  padding-top: 12rem;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
 
 .icon-link {
-  width: 56px;
-  height: 56px;
-  border-radius: 9999px;
-  display: grid;
-  place-items: center;
-  text-decoration: none;
-  transition: background .15s ease, transform .05s ease;
-  touch-action: manipulation;
+  width: 2.75rem;
+  height: 2.75rem;
+  // border-radius: 9999px;
+  // background: rgba(255, 255, 255, 0.12);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition:
+    background 0.15s ease-out,
+    transform 0.15s ease-out;
 }
-// .icon-link:hover  { background: rgba(0,0,0,.06); }
-.icon-link:active { transform: translateY(1px); }
-.icon-link:focus-visible { outline: 2px solid #60a5fa; outline-offset: 3px; }
 
-/* ---- the actual icon glyph (monochrome, recolorable) ---- */
+.icon-link:hover,
+.icon-link:focus-visible {
+  background: rgba(255, 255, 255, 0.22);
+  transform: translateY(-1px);
+}
+
+/* Generic icon span */
 .icon {
-  width: 24px;
-  height: 24px;
-  display: inline-block;
-  background-color: #0f172a;              /* base color */
-  -webkit-mask: no-repeat center / contain;
-          mask: no-repeat center / contain;
-  transition: background-color .15s ease;
+  display: block;
+  width: 1.4rem;
+  height: 1.4rem;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+    filter: invert(1);   /* black → white, white → black */
+
 }
 
-/* hover / press colors */
-.icon-link:hover  .icon { background-color: #60a5fa; } /* hover */
-.icon-link:active .icon { background-color: #f59e0b; } /* press */
+/* Individual icons (paths relative to this SCSS file) */
+.icon--spotify {
+  background-image: url("../assets/icons/spotify.svg");
+}
 
-/* point masks to YOUR files (relative to this scss file) */
-.icon--spotify   { -webkit-mask-image: url("../assets/icons/spotify.svg");             mask-image: url("../assets/icons/spotify.svg"); }
-.icon--youtube   { -webkit-mask-image: url("../assets/icons/youtube.svg");             mask-image: url("../assets/icons/youtube.svg"); }
-.icon--instagram { -webkit-mask-image: url("../assets/icons/instagram.svg");           mask-image: url("../assets/icons/instagram.svg"); }
-.icon--facebook  { -webkit-mask-image: url("../assets/icons/facebook-app-symbol.svg"); mask-image: url("../assets/icons/facebook-app-symbol.svg"); }
-.icon--bandcamp  { -webkit-mask-image: url("../assets/icons/bandcamp-logo.svg");       mask-image: url("../assets/icons/bandcamp-logo.svg"); }
-.icon--apple     { -webkit-mask-image: url("../assets/icons/music.svg");               mask-image: url("../assets/icons/music.svg"); }
-.icon--merch     { -webkit-mask-image: url("../assets/icons/shopping-cart.svg");       mask-image: url("../assets/icons/shopping-cart.svg"); }
+.icon--youtube {
+  background-image: url("../assets/icons/youtube.svg");
+    filter: invert(1) brightness(100);   /* black → white, white → black */
 
-/* hard stop any global img rules from blowing up sizes */
-.home img { max-width: none !important; height: auto; }
+}
+
+.icon--instagram {
+  background-image: url("../assets/icons/instagram.svg");
+}
+
+.icon--facebook {
+  background-image: url("../assets/icons/facebook-app-symbol.svg");
+}
+
+.icon--bandcamp {
+  background-image: url("../assets/icons/bandcamp-logo.svg");
+}
+
+.icon--apple {
+  background-image: url("../assets/icons/music.svg");
+}
+
+.icon--merch {
+  background-image: url("../assets/icons/shopping-cart.svg");
+}
+
+.icon--tikTok {
+    background-image: url("../assets/icons/tik-tok-logo.svg");
+}
+
+/* ===== Larger screens tweaks ===== */
+
+@media (min-width: 768px) {
+  .home__overlay {
+    padding-top: 2.5rem;
+    padding-bottom: 3rem;
+  }
+
+  .home__header {
+    max-width: 480px;
+  }
+
+  .home__logo {
+    width: min(320px, 40vw);
+  }
+}
