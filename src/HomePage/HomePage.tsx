@@ -39,6 +39,26 @@ export default function HomePage() {
     // };
   }, []);
 
+    // Instagram embed loader
+  useEffect(() => {
+    const scriptId = "instagram-embed-script";
+    if (document.getElementById(scriptId)) {
+      (window as any).instgrm?.Embeds?.process?.();
+      return;
+    }
+
+    const script = document.createElement("script");
+    script.id = scriptId;
+    script.src = "https://www.instagram.com/embed.js";
+    script.async = true;
+    script.defer = true;
+    script.onload = () => {
+      (window as any).instgrm?.Embeds?.process?.();
+    };
+
+    document.body.appendChild(script);
+  }, []);
+
   const links = [
     { label: "Instagram",   href: "#", cls: "icon--instagram" },
     { label: "Spotify",     href: "#", cls: "icon--spotify" },
@@ -298,14 +318,42 @@ export default function HomePage() {
       </section>
 
 
-      <section id="videos" className="section section--videos">
-        <div className="section__inner">
-          <h2 className="section__title">Videos</h2>
-          <p className="section__text">
-            Live sessions, music videos, and clips will go here.
-          </p>
-        </div>
-      </section>
+<section id="videos" className="section section--videos">
+  <div className="section__inner">
+    <h2 className="section__title">Videos</h2>
+    <p className="section__text">
+      Live clips, reels, and music videos.
+    </p>
+
+    <div className="video-embed video-embed--tall">
+      <div className="video-embed__inner">
+        <iframe
+          src="https://www.youtube.com/embed/en4ntRV88ng?si=jrWb5IcEAqV5TLdu"
+          title="Cheer Up! – live video"
+          frameBorder={0}
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          referrerPolicy="strict-origin-when-cross-origin"
+          allowFullScreen
+        />
+      </div>
+    </div>
+    {/* VIDEO 2 */}
+    <div className="video-embed video-embed--tall">
+      <div className="video-embed__inner">
+        <iframe
+          src="https://www.youtube.com/embed/c7StL0KmnEE?si=Yaci4nA3o8uhddqS"
+          title="Cheer Up! – live video 2"
+          frameBorder={0}
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          referrerPolicy="strict-origin-when-cross-origin"
+          allowFullScreen
+        />
+      </div>
+    </div>
+
+  </div>
+</section>
+
 
       <section id="contact" className="section section--contact">
         <div className="section__inner">
