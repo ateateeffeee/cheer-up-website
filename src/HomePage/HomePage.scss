@@ -291,3 +291,43 @@ html, body {
 .home--menu-open {
   overflow: hidden;
 }
+
+/* nice smooth scroll for anchor links */
+html {
+  scroll-behavior: smooth;
+}
+
+/* ===== Generic sections below the hero ===== */
+
+.section {
+  padding: 3rem 1.5rem;
+  background: #000;
+  color: #f5f5f5;
+}
+
+.section:nth-of-type(odd) {
+  background: #050505;   // subtle stripe effect, tweak or remove if you hate it
+}
+
+.section__inner {
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.section__title {
+  font-size: 1.4rem;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  margin-bottom: 1.5rem;
+}
+
+.section__text {
+  font-size: 0.98rem;
+  line-height: 1.7;
+  margin-bottom: 1rem;
+}
+
+/* optional: stop body scroll when menu overlay is open */
+.home--menu-open {
+  overflow: hidden;
+}
