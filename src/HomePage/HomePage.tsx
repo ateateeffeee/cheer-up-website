@@ -321,9 +321,6 @@ export default function HomePage() {
 <section id="videos" className="section section--videos">
   <div className="section__inner">
     <h2 className="section__title">Videos</h2>
-    <p className="section__text">
-      Live clips, reels, and music videos.
-    </p>
 
     <div className="video-embed video-embed--tall">
       <div className="video-embed__inner">
@@ -338,7 +335,7 @@ export default function HomePage() {
       </div>
     </div>
     {/* VIDEO 2 */}
-    <div className="video-embed video-embed--tall">
+    <div className="video-embed video-embed--wide">
       <div className="video-embed__inner">
         <iframe
           src="https://www.youtube.com/embed/c7StL0KmnEE?si=Yaci4nA3o8uhddqS"
@@ -350,19 +347,56 @@ export default function HomePage() {
         />
       </div>
     </div>
+          <div className="video">
+<div className="video-embed video-embed--wide">
+  <div className="video-embed__inner">
+    <iframe
+      src="https://www.youtube.com/embed/QTPSs8EEIG0?si=3SuM9D1j_1uFO8aA"
+      title="Cheer Up! – Music Video"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+      referrerPolicy="strict-origin-when-cross-origin"
+      allowFullScreen
+    />
+  </div>
+</div>
+<div className="video-embed video-embed--wide">
+  <div className="video-embed__inner">
+    <iframe
+      src="https://www.youtube.com/embed/Ohsm8MY3JAU?si=dPN06uxLILuqLBzd"
+      title="Cheer Up! – Music Video 2"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+      referrerPolicy="strict-origin-when-cross-origin"
+      allowFullScreen
+    />
+  </div>
+</div>
+
+      </div>
 
   </div>
 </section>
 
 
-      <section id="contact" className="section section--contact">
-        <div className="section__inner">
-          <h2 className="section__title">Contact</h2>
-          <p className="section__text">
-            Booking / press: you@yourband.com
-          </p>
-        </div>
-      </section>
+<section id="contact" className="section section--contact">
+  <div className="section__inner">
+    <h2 className="section__title">Contact</h2>
+    <p className="section__text">
+      Booking / press:&nbsp;
+      <button
+        type="button"
+        className="contact-email"
+        onClick={() => {
+          const user = "cheerupbang";
+          const domain = "gmail.com";
+          const email = `${user}@${domain}`;
+          window.location.href = `mailto:${email}`;
+        }}
+      >
+        cheerupbang [at] gmail [dot] com
+      </button>
+    </p>
+  </div>
+</section>
     </main>
   );
 }
