@@ -1,4 +1,4 @@
-import { useState, MouseEvent } from "react";
+import { useState, useEffect, MouseEvent } from "react";
 
 // ICON imports are technically unused (you use CSS background-image),
 // but keeping them here doesn’t hurt and you might use them later.
@@ -18,6 +18,26 @@ import "./HomePage.scss";
 
 export default function HomePage() {
   const [menuOpen, setMenuOpen] = useState(false);
+
+    useEffect(() => {
+    // avoid loading it multiple times if component re-renders
+    const existingScript = document.querySelector(
+      'script[src="https://widgetv3.bandsintown.com/main.min.js"]'
+    );
+    if (existingScript) return;
+
+    const script = document.createElement("script");
+    script.src = "https://widgetv3.bandsintown.com/main.min.js";
+    script.async = true;
+    script.defer = true;
+    script.charset = "utf-8";
+
+    document.body.appendChild(script);
+        // you can optionally clean up, but for this widget it's fine to just leave it
+    // return () => {
+    //   script.remove();
+    // };
+  }, []);
 
   const links = [
     { label: "Instagram",   href: "#", cls: "icon--instagram" },
@@ -158,23 +178,125 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section id="shows" className="section section--shows">
-        <div className="section__inner">
-          <h2 className="section__title">Shows</h2>
-          <p className="section__text">
-            Upcoming dates and past highlights will live here.
-          </p>
-        </div>
-      </section>
+        <section id="shows" className="section section--shows">
+          <div className="section__inner">
+            <h2 className="section__title">Shows</h2>
+
+            <div className="bit-widget-wrapper">
+              <a
+                className="bit-widget-initializer"
+                data-artist-name="id_15608336"
+                data-events-to-display=""
+                data-background-color="rgba(0, 0, 0, 1)"
+                data-separator-color="rgba(221,221,221,1)"
+                data-text-color="rgba(255, 255, 255, 1)"
+                data-font="Helvetica"
+                data-auto-style="true"
+                data-button-label-capitalization="uppercase"
+                data-header-capitalization="uppercase"
+                data-location-capitalization="uppercase"
+                data-venue-capitalization="uppercase"
+                data-display-local-dates="true"
+                data-local-dates-position="tab"
+                data-display-past-dates="true"
+                data-display-details="false"
+                data-display-lineup="false"
+                data-display-start-time="false"
+                data-social-share-icon="false"
+                data-display-limit="all"
+                data-date-format="MMM. D, YYYY"
+                data-date-orientation="horizontal"
+                data-date-border-color="#4A4A4A"
+                data-date-border-width="1px"
+                data-date-capitalization="capitalize"
+                data-date-border-radius="10px"
+                data-event-ticket-cta-size="medium"
+                data-event-custom-ticket-text=""
+                data-event-ticket-text="TICKETS"
+                data-event-ticket-icon="false"
+                data-event-ticket-cta-text-color="rgba(255,255,255,1)"
+                data-event-ticket-cta-bg-color="rgba(74,74,74,1)"
+                data-event-ticket-cta-border-color="rgba(74,74,74,1)"
+                data-event-ticket-cta-border-width="0px"
+                data-event-ticket-cta-border-radius="2px"
+                data-sold-out-button-text-color="rgba(255,255,255,1)"
+                data-sold-out-button-background-color="rgba(74,74,74,1)"
+                data-sold-out-button-border-color="rgba(74,74,74,1)"
+                data-sold-out-button-clickable="true"
+                data-event-rsvp-position="left"
+                data-event-rsvp-cta-size="medium"
+                data-event-rsvp-only-show-icon="false"
+                data-event-rsvp-text="RSVP"
+                data-event-rsvp-icon="false"
+                data-event-rsvp-cta-text-color="rgba(74,74,74,1)"
+                data-event-rsvp-cta-bg-color="rgba(255,255,255,1)"
+                data-event-rsvp-cta-border-color="rgba(74,74,74,1)"
+                data-event-rsvp-cta-border-width="1px"
+                data-event-rsvp-cta-border-radius="2px"
+                data-follow-section-position="hidden"
+                data-follow-section-alignment="center"
+                data-follow-section-header-text=""
+                data-follow-section-cta-size="medium"
+                data-follow-section-cta-text="FOLLOW"
+                data-follow-section-cta-icon="false"
+                data-follow-section-cta-text-color="rgba(255,255,255,1)"
+                data-follow-section-cta-bg-color="rgba(74,74,74,1)"
+                data-follow-section-cta-border-color="rgba(74,74,74,1)"
+                data-follow-section-cta-border-width="0px"
+                data-follow-section-cta-border-radius="2px"
+                data-play-my-city-position="bottom"
+                data-play-my-city-alignment="center"
+                data-play-my-city-header-text=""
+                data-play-my-city-cta-size="medium"
+                data-play-my-city-cta-text="REQUEST A SHOW"
+                data-play-my-city-cta-icon="false"
+                data-play-my-city-cta-text-color="rgba(255,255,255,1)"
+                data-play-my-city-cta-bg-color="rgba(74,74,74,1)"
+                data-play-my-city-cta-border-color="rgba(74,74,74,1)"
+                data-play-my-city-cta-border-width="0px"
+                data-play-my-city-cta-border-radius="2px"
+                data-optin-font=""
+                data-optin-text-color=""
+                data-optin-bg-color=""
+                data-optin-cta-text-color=""
+                data-optin-cta-bg-color=""
+                data-optin-cta-border-width=""
+                data-optin-cta-border-radius=""
+                data-optin-cta-border-color=""
+                data-language="en"
+                data-layout-breakpoint="900"
+                data-app-id="63ececee9b830a12689a6f5ff4e648dd"
+                data-affil-code=""
+                data-bit-logo-position="hidden"
+                data-bit-logo-color="rgba(66,66,66,1)"
+              />
+            </div>
+          </div>
+        </section>
+
+
 
       <section id="music" className="section section--music">
         <div className="section__inner">
           <h2 className="section__title">Music</h2>
-          <p className="section__text">
-            Embedded players, featured tracks, and releases go here.
-          </p>
+
+          <div className="embed embed--spotify-playlist">
+            <iframe
+              data-testid="embed-iframe"
+              title="Cheer Up! Playlist on Spotify"
+              style={{ borderRadius: 12 }}
+              src="https://open.spotify.com/embed/playlist/5x0uZO2RAgtv8LR9tY9kCM?utm_source=generator"
+              width="100%"
+              height="352"
+              frameBorder="0"
+              allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+              allowFullScreen
+              loading="lazy"
+            />
+          </div>
         </div>
       </section>
+
 
       <section id="videos" className="section section--videos">
         <div className="section__inner">
