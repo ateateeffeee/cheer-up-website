@@ -15,6 +15,8 @@ import cuWhiteLogo from "../assets/pics/cu-white-logo.png";
 import boysHunched from "../assets/pics/boys-hunched.jpg";
 import milestone2024 from "../assets/pics/milestone-2024.jpg";
 
+import SocialLinks from "../SocialLinks/SocialLinks";
+
 import "./HomePage.scss";
 
 export default function HomePage() {
@@ -149,21 +151,7 @@ export default function HomePage() {
           </header>
 
           {/* SOCIAL ICONS */}
-          <nav className="home__links icons-only" aria-label="Band links">
-            {links.map((l) => (
-              <a
-                key={l.label}
-                className="icon-link"
-                href={l.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label={l.label}
-                title={l.label}
-              >
-                <span className={`icon ${l.cls}`} aria-hidden />
-              </a>
-            ))}
-          </nav>
+          <SocialLinks links={links} />
         </div>
       </section>
 
@@ -405,6 +393,12 @@ export default function HomePage() {
     </p>
   </div>
 </section>
+
+    <section className="section section--footer-links">
+      <div className="section__inner section__inner--center">
+        <SocialLinks links={links} className="home__links--footer" />
+      </div>
+    </section>
     </main>
   );
 }
