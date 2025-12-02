@@ -61,14 +61,14 @@ export default function HomePage() {
   }, []);
 
   const links = [
-    { label: "Instagram",   href: "#", cls: "icon--instagram" },
-    { label: "Spotify",     href: "#", cls: "icon--spotify" },
-    { label: "Apple Music", href: "#", cls: "icon--apple" },
-    { label: "Bandcamp",    href: "#", cls: "icon--bandcamp" },
-    { label: "YouTube",     href: "#", cls: "icon--youtube" },
-    { label: "Facebook",    href: "#", cls: "icon--facebook" },
-    { label: "TikTok",      href: "#", cls: "icon--tikTok" },
-    { label: "Merch",       href: "#", cls: "icon--merch" },
+    { label: "Instagram",   href: "https://www.instagram.com/cheerupband", cls: "icon--instagram" },
+    { label: "Spotify",     href: "https://open.spotify.com/playlist/5x0uZO2RAgtv8LR9tY9kCM?si=TPEYAVQwRPq0yNHjqp1osA", cls: "icon--spotify" },
+    { label: "Apple Music", href: "https://music.apple.com/us/artist/cheer-up/1837211582", cls: "icon--apple" },
+    { label: "Bandcamp",    href: "https://millhouserecords.bandcamp.com/track/henry-j-fate", cls: "icon--bandcamp" },
+    { label: "YouTube",     href: "https://www.youtube.com/watch?v=QTPSs8EEIG0", cls: "icon--youtube" },
+    { label: "Facebook",    href: "https://www.facebook.com/CheerUpBang/", cls: "icon--facebook" },
+    { label: "TikTok",      href: "https://www.tiktok.com/@cheerupbang", cls: "icon--tikTok" },
+    { label: "Merch",       href: "https://millhousemerch.com/search?q=Cheer+Up%21", cls: "icon--merch" },
   ];
 
   const menuItems = [
