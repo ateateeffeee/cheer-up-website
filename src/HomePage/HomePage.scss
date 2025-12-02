@@ -103,20 +103,19 @@ html, body {
 .icon-link {
   width: 2.75rem;
   height: 2.75rem;
-  // border-radius: 9999px;
-  // background: rgba(255, 255, 255, 0.12);
+  border-radius: 9999px;  /* always round */
   display: inline-flex;
   align-items: center;
   justify-content: center;
   transition:
     background 0.15s ease-out,
     transform 0.15s ease-out;
+  outline: none;           /* kill default outline */
 }
 
 .icon-link:hover,
 .icon-link:focus-visible {
   background: rgba(255, 255, 255, 0.22);
-  border-radius: 50px;
   transform: translateY(-1px);
 }
 
