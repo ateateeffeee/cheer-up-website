@@ -13,6 +13,7 @@ import tikTokLogo     from "../assets/icons/tik-tok-logo.svg";
 
 import cuWhiteLogo from "../assets/pics/cu-white-logo.png";
 import boysHunched from "../assets/pics/boys-hunched.jpg";
+import milestone2024 from "../assets/pics/milestone-2024.jpg";
 
 import "./HomePage.scss";
 
@@ -201,6 +202,13 @@ export default function HomePage() {
         <section id="shows" className="section section--shows">
           <div className="section__inner">
             <h2 className="section__title">Shows</h2>
+                <div className="shows-banner">
+                  <img
+                    src={milestone2024}
+                    alt="Cheer Up! live at The Milestone, 2024"
+                    className="shows-banner__image"
+                  />
+                </div>
 
             <div className="bit-widget-wrapper">
               <a

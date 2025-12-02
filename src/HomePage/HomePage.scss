@@ -185,7 +185,7 @@ html, body {
 /* ===== Hamburger menu ===== */
 
 .hamburger {
-  position: absolute;
+  position: fixed;
   top: 1rem;
   left: 1rem;
   z-index: 30;
@@ -388,6 +388,18 @@ html {
 .contact-email:hover,
 .contact-email:focus-visible {
   text-decoration: none;
+}
+
+.shows-banner {
+  margin: 1.5rem 0 2rem;
+}
+
+.shows-banner__image {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 1rem;   /* or 0 if you want hard edges */
+  object-fit: cover;
 }
 
 
