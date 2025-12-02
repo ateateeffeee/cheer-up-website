@@ -188,7 +188,7 @@ html, body {
   position: fixed;
   top: 1rem;
   left: 1rem;
-  z-index: 30;
+  z-index: 100;           /* was 30 */
 
   width: 2.5rem;
   height: 2.5rem;
@@ -197,10 +197,10 @@ html, body {
   background: rgba(0, 0, 0, 0.4);
 
   display: flex;
-  flex-direction: column;     /* stack bars vertically */
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 4px;                   /* even spacing between bars */
+  gap: 4px;
 
   padding: 0;
   cursor: pointer;
@@ -246,7 +246,7 @@ html, body {
 .mobile-menu {
   position: fixed;
   inset: 0;
-  z-index: 20;
+  z-index: 90;            /* was 20, keep below hamburger but above everything else */
 
   display: flex;
   align-items: center;
@@ -326,6 +326,65 @@ html {
   line-height: 1.7;
   margin-bottom: 1rem;
 }
+/* ===== Contact hero section ===== */
+
+.section--contact {
+  padding: 0;          /* we control padding inside the hero */
+  background: #000;
+}
+
+.contact-hero {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;   /* match the main hero height */
+  overflow: hidden;
+}
+
+.contact-hero__photo {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;   /* same behavior as .home__hero-photo */
+}
+
+/* overlay similar to .home__overlay */
+.contact-hero__overlay {
+  position: relative;
+  z-index: 0;
+  min-height: 100vh;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  padding: 1.75rem 1rem 2.5rem;
+  color: #ffffff;
+
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.75) 0%,
+    rgba(0, 0, 0, 0.35) 40%,
+    rgba(0, 0, 0, 0.85) 100%
+  );
+}
+
+.section__inner--contact {
+  max-width: 420px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+/* reuse the icon layout but let it hug the bottom a bit */
+.home__links--footer {
+  margin-top: 2rem;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
 
 /* optional: stop body scroll when menu overlay is open */
 .home--menu-open {

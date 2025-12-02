@@ -14,6 +14,8 @@ import tikTokLogo     from "../assets/icons/tik-tok-logo.svg";
 import cuWhiteLogo from "../assets/pics/cu-white-logo.png";
 import boysHunched from "../assets/pics/boys-hunched.jpg";
 import milestone2024 from "../assets/pics/milestone-2024.jpg";
+import boysStandingInStar from "../assets/pics/boys-standing-in-star.jpg";
+
 
 import SocialLinks from "../SocialLinks/SocialLinks";
 
@@ -374,31 +376,42 @@ export default function HomePage() {
 
 
 <section id="contact" className="section section--contact">
-  <div className="section__inner">
-    <h2 className="section__title">Contact</h2>
-    <p className="section__text">
-      Booking / press:&nbsp;
-      <button
-        type="button"
-        className="contact-email"
-        onClick={() => {
-          const user = "cheerupbang";
-          const domain = "gmail.com";
-          const email = `${user}@${domain}`;
-          window.location.href = `mailto:${email}`;
-        }}
-      >
-        cheerupbang [at] gmail [dot] com
-      </button>
-    </p>
+  <div className="contact-hero">
+    {/* background image */}
+    <img
+      src={boysStandingInStar}
+      alt="Cheer Up! standing in a star"
+      className="contact-hero__photo"
+    />
+
+    {/* overlay with text + icons */}
+    <div className="contact-hero__overlay">
+      <div className="section__inner section__inner--contact">
+        <h2 className="section__title">Contact</h2>
+        <p className="section__text">
+          Booking / press:&nbsp;
+          <button
+            type="button"
+            className="contact-email"
+            onClick={() => {
+              const user = "cheerupbang";
+              const domain = "gmail.com";
+              const email = `${user}@${domain}`;
+              window.location.href = `mailto:${email}`;
+            }}
+          >
+            cheerupbang [at] gmail [dot] com
+          </button>
+        </p>
+
+        {/* icons as the final “outro” row */}
+        <SocialLinks links={links} className="home__links home__links--footer" />
+      </div>
+    </div>
   </div>
 </section>
 
-    <section className="section section--footer-links">
-      <div className="section__inner section__inner--center">
-        <SocialLinks links={links} className="home__links--footer" />
-      </div>
-    </section>
+
     </main>
   );
 }
