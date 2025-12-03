@@ -523,17 +523,28 @@ html {
     margin: 0;
   }
 
-  .desktop-nav__item a {
-    font-size: 0.95rem;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
-    color: #ffffff;
-    text-decoration: none;
-  }
+.desktop-nav__item a {
+  font-size: 0.95rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #ffffff;
+  text-decoration: none;
+
+  display: inline-block;        /* so padding + radius work */
+  padding: 0.4rem 0.9rem;       /* space around text */
+  border-radius: 9999px;        /* pill shape */
+  transition:
+    background 0.15s ease-out,
+    transform 0.15s ease-out;
+}
 
   .desktop-nav__item a:hover,
   .desktop-nav__item a:focus-visible {
-    text-decoration: underline;
+    // text-decoration: underline;
+      background: rgba(255, 255, 255, 0.22);
+      transform: translateY(-1px);
+      
+      
   }
 
   /* sections scroll so their titles aren't hidden under the fixed nav */
