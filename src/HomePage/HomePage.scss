@@ -469,14 +469,17 @@ html {
     padding-bottom: 4rem;
   }
 
+@media (min-width: 768px) {
   .home__header {
-    max-width: 520px;
+    margin-top: -5vh;
+    max-width: 640px;          // give it a bit more room
   }
 
   .home__logo {
-    width: min(360px, 45vw);
-    margin-top: 0;
+    width: min(520px, 30vw);   // BIGGER: up to 60% of viewport width,
+    margin-top: 0;             // and max 520px wide
   }
+}
 
   /* make sections bigger */
   .section__inner {
