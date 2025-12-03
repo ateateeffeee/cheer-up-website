@@ -119,9 +119,9 @@ export default function HomePage() {
   const menuItems = [
     { label: `Cheer the ${menuAdverb} Up!`, id: "home" },
     { label: "About",  id: "about" },
-    { label: "Shows",  id: "shows" },
     { label: "Music",  id: "music" },
     { label: "Videos", id: "videos" },
+    { label: "Shows",  id: "shows" },
     { label: "Contact", id: "contact" },
   ];
 
@@ -214,7 +214,7 @@ export default function HomePage() {
             
           </p>
           <div className="embed embed--spotify">
-      <iframe
+      {/* <iframe
         data-testid="embed-iframe"
         title="Henry J. Fate on Spotify"
         style={{ borderRadius: 12 }}
@@ -225,10 +225,90 @@ export default function HomePage() {
         allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
         allowFullScreen
         loading="lazy"
-      />
+      /> */}
     </div>
         </div>
       </section>
+
+      <section id="music" className="section section--music">
+        <div className="section__inner">
+          <h2 className="section__title">Music</h2>
+
+          <div className="embed embed--spotify-playlist">
+            <iframe
+              data-testid="embed-iframe"
+              title="Cheer Up! Playlist on Spotify"
+              style={{ borderRadius: 12 }}
+              src="https://open.spotify.com/embed/playlist/5x0uZO2RAgtv8LR9tY9kCM?utm_source=generator"
+              width="100%"
+              height="352"
+              frameBorder="0"
+              allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+              allowFullScreen
+              loading="lazy"
+            />
+          </div>
+        </div>
+      </section>
+
+
+<section id="videos" className="section section--videos">
+  <div className="section__inner">
+    <h2 className="section__title">Videos</h2>
+
+    <div className="video-embed video-embed--tall">
+      <div className="video-embed__inner">
+        <iframe
+          src="https://www.youtube.com/embed/en4ntRV88ng?si=jrWb5IcEAqV5TLdu"
+          title="Cheer Up! – live video"
+          frameBorder={0}
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          referrerPolicy="strict-origin-when-cross-origin"
+          allowFullScreen
+        />
+      </div>
+    </div>
+    {/* VIDEO 2 */}
+    <div className="video-embed video-embed--wide">
+      <div className="video-embed__inner">
+        <iframe
+          src="https://www.youtube.com/embed/c7StL0KmnEE?si=Yaci4nA3o8uhddqS"
+          title="Cheer Up! – live video 2"
+          frameBorder={0}
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          referrerPolicy="strict-origin-when-cross-origin"
+          allowFullScreen
+        />
+      </div>
+    </div>
+          <div className="video">
+<div className="video-embed video-embed--wide">
+  <div className="video-embed__inner">
+    <iframe
+      src="https://www.youtube.com/embed/QTPSs8EEIG0?si=3SuM9D1j_1uFO8aA"
+      title="Cheer Up! – Music Video"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+      referrerPolicy="strict-origin-when-cross-origin"
+      allowFullScreen
+    />
+  </div>
+</div>
+<div className="video-embed video-embed--wide">
+  <div className="video-embed__inner">
+    <iframe
+      src="https://www.youtube.com/embed/Ohsm8MY3JAU?si=dPN06uxLILuqLBzd"
+      title="Cheer Up! – Music Video 2"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+      referrerPolicy="strict-origin-when-cross-origin"
+      allowFullScreen
+    />
+  </div>
+</div>
+
+      </div>
+
+  </div>
+</section>
 
         <section id="shows" className="section section--shows">
           <div className="section__inner">
@@ -332,88 +412,6 @@ export default function HomePage() {
             </div>
           </div>
         </section>
-
-
-
-      <section id="music" className="section section--music">
-        <div className="section__inner">
-          <h2 className="section__title">Music</h2>
-
-          <div className="embed embed--spotify-playlist">
-            <iframe
-              data-testid="embed-iframe"
-              title="Cheer Up! Playlist on Spotify"
-              style={{ borderRadius: 12 }}
-              src="https://open.spotify.com/embed/playlist/5x0uZO2RAgtv8LR9tY9kCM?utm_source=generator"
-              width="100%"
-              height="352"
-              frameBorder="0"
-              allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-              allowFullScreen
-              loading="lazy"
-            />
-          </div>
-        </div>
-      </section>
-
-
-<section id="videos" className="section section--videos">
-  <div className="section__inner">
-    <h2 className="section__title">Videos</h2>
-
-    <div className="video-embed video-embed--tall">
-      <div className="video-embed__inner">
-        <iframe
-          src="https://www.youtube.com/embed/en4ntRV88ng?si=jrWb5IcEAqV5TLdu"
-          title="Cheer Up! – live video"
-          frameBorder={0}
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-          referrerPolicy="strict-origin-when-cross-origin"
-          allowFullScreen
-        />
-      </div>
-    </div>
-    {/* VIDEO 2 */}
-    <div className="video-embed video-embed--wide">
-      <div className="video-embed__inner">
-        <iframe
-          src="https://www.youtube.com/embed/c7StL0KmnEE?si=Yaci4nA3o8uhddqS"
-          title="Cheer Up! – live video 2"
-          frameBorder={0}
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-          referrerPolicy="strict-origin-when-cross-origin"
-          allowFullScreen
-        />
-      </div>
-    </div>
-          <div className="video">
-<div className="video-embed video-embed--wide">
-  <div className="video-embed__inner">
-    <iframe
-      src="https://www.youtube.com/embed/QTPSs8EEIG0?si=3SuM9D1j_1uFO8aA"
-      title="Cheer Up! – Music Video"
-      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-      referrerPolicy="strict-origin-when-cross-origin"
-      allowFullScreen
-    />
-  </div>
-</div>
-<div className="video-embed video-embed--wide">
-  <div className="video-embed__inner">
-    <iframe
-      src="https://www.youtube.com/embed/Ohsm8MY3JAU?si=dPN06uxLILuqLBzd"
-      title="Cheer Up! – Music Video 2"
-      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-      referrerPolicy="strict-origin-when-cross-origin"
-      allowFullScreen
-    />
-  </div>
-</div>
-
-      </div>
-
-  </div>
-</section>
 
 
 <section id="contact" className="section section--contact">
