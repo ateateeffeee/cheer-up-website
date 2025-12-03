@@ -465,21 +465,19 @@ html {
 /* ===== DESKTOP OVERRIDES AT BOTTOM ===== */
 @media (min-width: 768px) {
   .home__overlay {
-    padding-top: 3rem;
+    padding-top: 6rem;   /* extra space so the fixed nav doesn't overlap the logo */
     padding-bottom: 4rem;
   }
 
-@media (min-width: 768px) {
   .home__header {
     margin-top: -5vh;
-    max-width: 640px;          // give it a bit more room
+    max-width: 640px;
   }
 
   .home__logo {
-    width: min(520px, 30vw);   // BIGGER: up to 60% of viewport width,
-    margin-top: 0;             // and max 520px wide
+    width: min(520px, 30vw);
+    margin-top: 0;
   }
-}
 
   /* make sections bigger */
   .section__inner {
@@ -498,11 +496,23 @@ html {
     max-width: 960px;
   }
 
-  /* DESKTOP NAV styles */
+  /* DESKTOP NAV = fixed at top */
   .desktop-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 80; /* below hamburger (100), above content */
+
     display: flex;
-    margin-top: 1.5rem;
     justify-content: center;
+    padding: 0.75rem 2rem;
+
+    background: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0.9),
+      rgba(0, 0, 0, 0)
+    );
   }
 
   .desktop-nav__list {
@@ -526,6 +536,11 @@ html {
     text-decoration: underline;
   }
 
+  /* sections scroll so their titles aren't hidden under the fixed nav */
+  .section {
+    scroll-margin-top: 5rem;
+  }
+
   /* HIDE mobile stuff on desktop */
   .hamburger {
     display: none;
@@ -535,5 +550,3 @@ html {
     display: none;
   }
 }
-
-
