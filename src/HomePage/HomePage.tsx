@@ -1,4 +1,4 @@
-import { useState, useEffect, MouseEvent } from "react";
+import { useState, useEffect, useRef, MouseEvent } from "react";
 
 // ICON imports are technically unused (you use CSS background-image),
 // but keeping them here doesn’t hurt and you might use them later.
@@ -21,9 +21,32 @@ import SocialLinks from "../SocialLinks/SocialLinks";
 
 import "./HomePage.scss";
 
+import adverbsData from "../utils/adverbs.json"
+
+type AdverbFile = { adverbs: string[] };
+
+function getRandomAdverb(prev?: string): string {
+  const { adverbs } = adverbsData as AdverbFile;
+  if (!adverbs || adverbs.length === 0) return prev ?? "frick";
+  if (adverbs.length === 1) return adverbs[0];
+
+  let next = prev;
+  while (!next || next === prev) {
+    const idx = Math.floor(Math.random() * adverbs.length);
+    next = adverbs[idx];
+  }
+  return next;
+}
+
 export default function HomePage() {
   const [menuOpen, setMenuOpen] = useState(false);
 
+    // current adverb shown in the "Home" label
+  const [menuAdverb, setMenuAdverb] = useState(() => getRandomAdverb());
+
+  // store timeout so we can clean up on unmount
+  const adverbTimeoutRef = useRef<number | null>(null);
+  
     useEffect(() => {
     // avoid loading it multiple times if component re-renders
     const existingScript = document.querySelector(
@@ -64,6 +87,24 @@ export default function HomePage() {
     document.body.appendChild(script);
   }, []);
 
+    useEffect(() => {
+    // when menu goes from open -> closed, schedule a new adverb
+    if (!menuOpen) {
+      adverbTimeoutRef.current = window.setTimeout(() => {
+        setMenuAdverb((prev) => getRandomAdverb(prev));
+      }, 100); // .1 second delay
+    }
+  }, [menuOpen]);
+
+  // clear timeout when component unmounts
+  useEffect(() => {
+    return () => {
+      if (adverbTimeoutRef.current !== null) {
+        clearTimeout(adverbTimeoutRef.current);
+      }
+    };
+  }, []);
+
   const links = [
     { label: "Instagram",   href: "https://www.instagram.com/cheerupband", cls: "icon--instagram" },
     { label: "Spotify",     href: "https://open.spotify.com/playlist/5x0uZO2RAgtv8LR9tY9kCM?si=TPEYAVQwRPq0yNHjqp1osA", cls: "icon--spotify" },
@@ -76,7 +117,7 @@ export default function HomePage() {
   ];
 
   const menuItems = [
-    { label: "Home",   id: "home" },
+    { label: `Cheer the ${menuAdverb} Up!`, id: "home" },
     { label: "About",  id: "about" },
     { label: "Shows",  id: "shows" },
     { label: "Music",  id: "music" },
