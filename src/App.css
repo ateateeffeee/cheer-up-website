@@ -1,8 +1,17 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
+html,
+body {
+  margin: 0;
   padding: 0;
-  text-align: center;
+  background: #000; /* black edges instead of white if it ever shows */
+}
+
+/* Make the root fill the viewport and NOT be a centered box */
+#root {
+  margin: 0;
+  padding: 0;
+  max-width: none;
+  width: 100%;
+  min-height: 100vh;
 }
 
 .logo {

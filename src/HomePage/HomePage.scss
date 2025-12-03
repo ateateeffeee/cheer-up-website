@@ -1,7 +1,16 @@
 /* HomePage.scss */
-html, body {
+html,
+body {
   margin: 0;
   padding: 0;
+  background: #000;   /* black background instead of white */
+}
+
+/* Remove the centered, max-width container */
+#root {
+  margin: 0;
+  padding: 0;
+  max-width: none;
 }
 
 /* Visually hidden but accessible text (for the h1) */
@@ -164,22 +173,8 @@ html, body {
   background-image: url("../assets/icons/tik-tok-logo.svg");
 }
 
-/* ===== Larger screens tweaks ===== */
-
-@media (min-width: 768px) {
-  .home__overlay {
-    padding-top: 2.5rem;
-    padding-bottom: 3rem;
-  }
-
-  .home__header {
-    max-width: 480px;
-  }
-
-  .home__logo {
-    width: min(320px, 40vw);
-    margin-top: 0; // optional on larger screens so it’s not so high
-  }
+.desktop-nav {
+  display: none;   /* hidden on mobile by default */
 }
 
 /* ===== Hamburger menu ===== */
@@ -459,6 +454,82 @@ html {
   height: auto;
   border-radius: 1rem;   /* or 0 if you want hard edges */
   object-fit: cover;
+}
+
+.desktop-nav {
+  display: none;
+}
+
+
+/* ===== DESKTOP OVERRIDES AT BOTTOM ===== */
+@media (min-width: 768px) {
+  .home__overlay {
+    padding-top: 3rem;
+    padding-bottom: 4rem;
+  }
+
+  .home__header {
+    max-width: 520px;
+  }
+
+  .home__logo {
+    width: min(360px, 45vw);
+    margin-top: 0;
+  }
+
+  /* make sections bigger */
+  .section__inner {
+    max-width: 960px;
+  }
+
+  .section__title {
+    font-size: 1.8rem;
+  }
+
+  .section__text {
+    font-size: 1.05rem;
+  }
+
+  .video-embed--wide {
+    max-width: 960px;
+  }
+
+  /* DESKTOP NAV styles */
+  .desktop-nav {
+    display: flex;
+    margin-top: 1.5rem;
+    justify-content: center;
+  }
+
+  .desktop-nav__list {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .desktop-nav__item a {
+    font-size: 0.95rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: #ffffff;
+    text-decoration: none;
+  }
+
+  .desktop-nav__item a:hover,
+  .desktop-nav__item a:focus-visible {
+    text-decoration: underline;
+  }
+
+  /* HIDE mobile stuff on desktop */
+  .hamburger {
+    display: none;
+  }
+
+  .mobile-menu {
+    display: none;
+  }
 }
 
 

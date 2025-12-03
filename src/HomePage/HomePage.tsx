@@ -46,6 +46,7 @@ export default function HomePage() {
 
   // store timeout so we can clean up on unmount
   const adverbTimeoutRef = useRef<number | null>(null);
+  const firstRunRef = useRef(true);
   
     useEffect(() => {
     // avoid loading it multiple times if component re-renders
@@ -87,14 +88,20 @@ export default function HomePage() {
     document.body.appendChild(script);
   }, []);
 
-    useEffect(() => {
-    // when menu goes from open -> closed, schedule a new adverb
-    if (!menuOpen) {
-      adverbTimeoutRef.current = window.setTimeout(() => {
-        setMenuAdverb((prev) => getRandomAdverb(prev));
-      }, 100); // .1 second delay
-    }
-  }, [menuOpen]);
+useEffect(() => {
+  // skip the first run (initial mount)
+  if (firstRunRef.current) {
+    firstRunRef.current = false;
+    return;
+  }
+
+  // when menu goes from open -> closed, schedule a new adverb
+  if (!menuOpen) {
+    adverbTimeoutRef.current = window.setTimeout(() => {
+      setMenuAdverb((prev) => getRandomAdverb(prev));
+    }, 100); // 0.1s after close
+  }
+}, [menuOpen]);
 
   // clear timeout when component unmounts
   useEffect(() => {
@@ -192,6 +199,22 @@ export default function HomePage() {
             </h1>
             <p className="home__subtitle">beachy indie-math rock</p>
           </header>
+
+        {/* DESKTOP NAV (hidden on mobile via CSS) */}
+        <nav className="desktop-nav" aria-label="Main navigation">
+          <ul className="desktop-nav__list">
+            {menuItems.map((item) => (
+              <li key={item.id} className="desktop-nav__item">
+                <a
+                  href={`#${item.id}`}
+                  onClick={(e) => handleMenuClick(item.id, e)}
+                >
+                  {item.label}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </nav>
 
           {/* SOCIAL ICONS */}
           <SocialLinks links={links} />
