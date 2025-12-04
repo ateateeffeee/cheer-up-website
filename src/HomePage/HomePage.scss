@@ -465,18 +465,24 @@ html {
 /* ===== DESKTOP OVERRIDES AT BOTTOM ===== */
 @media (min-width: 768px) {
   .home__overlay {
-    padding-top: 6rem;   /* extra space so the fixed nav doesn't overlap the logo */
+    padding-top: 5rem;   /* was 6rem – pulls everything up slightly */
     padding-bottom: 4rem;
   }
 
   .home__header {
-    margin-top: -5vh;
+    margin-top: -8vh;    /* was -5vh – move logo + subtitle higher */
     max-width: 640px;
   }
 
   .home__logo {
     width: min(520px, 30vw);
     margin-top: 0;
+  }
+
+  .home__subtitle {
+    margin-top: 0.5rem;  /* keeps it tucked under the logo */
+    font-size: 1rem;     /* tiny bump if you want it a bit bolder */
+    letter-spacing: 0.18em;
   }
 
   /* make sections bigger */
