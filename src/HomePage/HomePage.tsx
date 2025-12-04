@@ -95,11 +95,19 @@ useEffect(() => {
     return;
   }
 
-  // when menu goes from open -> closed, schedule a new adverb
+  // when menu goes from open -> closed
   if (!menuOpen) {
-    adverbTimeoutRef.current = window.setTimeout(() => {
+    const isDesktop = window.matchMedia?.("(min-width: 768px)").matches;
+
+    if (isDesktop) {
+      // DESKTOP: change instantly
       setMenuAdverb((prev) => getRandomAdverb(prev));
-    }, 100); // 0.1s after close
+    } else {
+      // MOBILE: keep the slight delay if you still want it
+      adverbTimeoutRef.current = window.setTimeout(() => {
+        setMenuAdverb((prev) => getRandomAdverb(prev));
+      }, 100);
+    }
   }
 }, [menuOpen]);
 
