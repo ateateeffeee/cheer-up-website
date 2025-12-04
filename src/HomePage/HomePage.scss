@@ -497,6 +497,10 @@ html {
     letter-spacing: 0.18em;
   }
 
+  .home__links {
+    padding-top: 10rem;
+  }
+
   /* make sections bigger */
   .section__inner {
     max-width: 960px;
@@ -622,5 +626,21 @@ html {
     max-height: 50vh;  /* keeps it from filling the whole screen */
     object-fit: cover;
     object-position: center 45%;
+  }
+
+    /* Make the contact section stop right at the bottom */
+  .contact-hero {
+    height: 100vh;        /* instead of just min-height */
+  }
+
+  /* Slightly reduce padding so content + padding fits nicely */
+  .contact-hero__overlay {
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;   /* was 2.5rem */
+  }
+
+  /* Bring the footer icons a bit closer to the text */
+  .home__links--footer {
+    margin-top: 1.25rem;      /* was 2rem */
   }
 }
