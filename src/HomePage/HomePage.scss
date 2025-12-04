@@ -203,12 +203,23 @@ body {
   transition:
     background 0.15s ease-out,
     border-color 0.15s ease-out;
+
+    -webkit-tap-highlight-color: transparent;
+
 }
 
 .hamburger:hover,
 .hamburger:focus-visible {
   background: rgba(0, 0, 0, 0.7);
   border-color: rgba(255, 255, 255, 0.9);
+}
+
+.hamburger:focus{
+  outline: none;
+}
+
+.hamburger::-moz-focus-inner {
+  border: 0;
 }
 
 .hamburger span {
