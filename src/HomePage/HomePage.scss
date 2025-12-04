@@ -566,4 +566,49 @@ html {
   .mobile-menu {
     display: none;
   }
+
+    /* SHORTS: 2-up grid on desktop */
+  .videos__shorts-row {
+    display: flex;
+    justify-content: center;
+    gap: 7rem;          /* space between the two shorts */
+    margin-top: 1.5rem;
+    flex-wrap: nowrap;
+  }
+
+  .videos__shorts-row .video-embed {
+    margin-top: 0;       /* we already have margin on the row */
+    flex: 1 1 0;
+    max-width: 420px;    /* same as single-short size */
+  }
+
+  /* keep shorts tall (9:16) */
+  .video-embed--tall .video-embed__inner {
+    padding-bottom: 177.78%;
+  }
+
+  /* make wide videos a bit smaller on desktop + centered */
+  .video-embed--wide {
+    max-width: 1020px;    /* smaller than 960; feels tighter */
+    margin: 1.5rem auto 0;
+  }
+
+  /* horizontal aspect ratio for wides (16:9) */
+  .video-embed--wide .video-embed__inner {
+    padding-bottom: 56.25%;
+  }
+
+    /* Make the Shows banner smaller on desktop */
+  .section--shows .shows-banner {
+    display: flex;
+    justify-content: center;
+  }
+
+  .section--shows .shows-banner__image {
+    width: 100%;
+    max-width: 70vw;   /* adjust: 60–80vw depending on taste */
+    max-height: 50vh;  /* keeps it from filling the whole screen */
+    object-fit: cover;
+    object-position: center 45%;
+  }
 }

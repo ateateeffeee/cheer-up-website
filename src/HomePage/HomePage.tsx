@@ -279,59 +279,64 @@ useEffect(() => {
   <div className="section__inner">
     <h2 className="section__title">Videos</h2>
 
-    <div className="video-embed video-embed--tall">
-      <div className="video-embed__inner">
-        <iframe
-          src="https://www.youtube.com/embed/en4ntRV88ng?si=jrWb5IcEAqV5TLdu"
-          title="Cheer Up! – live video"
-          frameBorder={0}
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-          referrerPolicy="strict-origin-when-cross-origin"
-          allowFullScreen
-        />
+    {/* SHORTS ROW */}
+    <div className="videos__shorts-row">
+      {/* Short 1 */}
+      <div className="video-embed video-embed--tall">
+        <div className="video-embed__inner">
+          <iframe
+            src="https://www.youtube.com/embed/en4ntRV88ng?si=jrWb5IcEAqV5TLdu"
+            title="Cheer Up! – live short 1"
+            frameBorder={0}
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerPolicy="strict-origin-when-cross-origin"
+            allowFullScreen
+          />
+        </div>
+      </div>
+
+      {/* Short 2 – same sizing as Short 1 */}
+      <div className="video-embed video-embed--tall">
+        <div className="video-embed__inner">
+          <iframe
+            src="https://www.youtube.com/embed/c7StL0KmnEE?si=Yaci4nA3o8uhddqS"
+            title="Cheer Up! – live short 2"
+            frameBorder={0}
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerPolicy="strict-origin-when-cross-origin"
+            allowFullScreen
+          />
+        </div>
       </div>
     </div>
-    {/* VIDEO 2 */}
+
+    {/* NORMAL HORIZONTAL VIDEOS BELOW */}
     <div className="video-embed video-embed--wide">
       <div className="video-embed__inner">
         <iframe
-          src="https://www.youtube.com/embed/c7StL0KmnEE?si=Yaci4nA3o8uhddqS"
-          title="Cheer Up! – live video 2"
-          frameBorder={0}
+          src="https://www.youtube.com/embed/QTPSs8EEIG0?si=3SuM9D1j_1uFO8aA"
+          title="Cheer Up! – Music Video"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
           referrerPolicy="strict-origin-when-cross-origin"
           allowFullScreen
         />
       </div>
     </div>
-          <div className="video">
-<div className="video-embed video-embed--wide">
-  <div className="video-embed__inner">
-    <iframe
-      src="https://www.youtube.com/embed/QTPSs8EEIG0?si=3SuM9D1j_1uFO8aA"
-      title="Cheer Up! – Music Video"
-      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-      referrerPolicy="strict-origin-when-cross-origin"
-      allowFullScreen
-    />
-  </div>
-</div>
-<div className="video-embed video-embed--wide">
-  <div className="video-embed__inner">
-    <iframe
-      src="https://www.youtube.com/embed/Ohsm8MY3JAU?si=dPN06uxLILuqLBzd"
-      title="Cheer Up! – Music Video 2"
-      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-      referrerPolicy="strict-origin-when-cross-origin"
-      allowFullScreen
-    />
-  </div>
-</div>
 
+    <div className="video-embed video-embed--wide">
+      <div className="video-embed__inner">
+        <iframe
+          src="https://www.youtube.com/embed/Ohsm8MY3JAU?si=dPN06uxLILuqLBzd"
+          title="Cheer Up! – Music Video 2"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          referrerPolicy="strict-origin-when-cross-origin"
+          allowFullScreen
+        />
       </div>
-
+    </div>
   </div>
 </section>
+
 
         <section id="shows" className="section section--shows">
           <div className="section__inner">
