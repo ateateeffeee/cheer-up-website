@@ -167,7 +167,25 @@ useEffect(() => {
     { label: "Contact", id: "contact" },
   ];
 
+  const openMailingListFromMenu = (e?: MouseEvent<HTMLAnchorElement>) => {
+  e?.preventDefault();
+
+  // close the menu immediately so it doesn't cover the page during scroll
+  setMenuOpen(false);
+
+  // force open the panel
+  setMailingOpen(true);
+
+  // scroll after state updates flush (next tick)
+  window.setTimeout(() => {
+    const el = document.getElementById("contact");
+    el?.scrollIntoView({ behavior: "smooth", block: "start" });
+  }, 50);
+};
+
+
   const handleMenuClick = (id: string, e?: MouseEvent<HTMLAnchorElement>) => {
+    if (id === "contact") setMailingOpen(false);
     e?.preventDefault();
     const el = document.getElementById(id);
     if (el) {
@@ -211,14 +229,17 @@ useEffect(() => {
             <ul className="mobile-menu__list">
               {menuItems.map((item) => (
                 <li key={item.label} className="mobile-menu__item">
-                  <a
-                    href={`#${item.id}`}
-                    onClick={(e) => handleMenuClick(item.id, e)}
-                  >
+                  <a href={`#${item.id}`} onClick={(e) => handleMenuClick(item.id, e)}>
                     {item.label}
                   </a>
                 </li>
               ))}
+
+              <li className="mobile-menu__item">
+                <a href="#contact" onClick={openMailingListFromMenu}>
+                  JOIN THE MAILING LIST
+                </a>
+              </li>
             </ul>
           </nav>
 
