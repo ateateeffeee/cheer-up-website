@@ -44,6 +44,33 @@ export default function HomePage() {
     // current adverb shown in the "Home" label
   const [menuAdverb, setMenuAdverb] = useState(() => getRandomAdverb());
 
+    
+  const [mailingOpen, setMailingOpen] = useState(false);
+
+  const [mailingForm, setMailingForm] = useState({
+    first_name: "",
+    last_name: "",
+    email: "",
+    address1: "",
+    address2: "",
+    city: "",
+    state: "",
+    postal_code: "",
+    country: "",
+    phone: "",
+    consent: true,
+    company: "",
+  });
+
+  const [mailingStatus, setMailingStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
+  const [mailingError, setMailingError] = useState<string>("");
+
+  const handleMailingChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+    const { name, value } = e.target;
+    setMailingForm((prev) => ({ ...prev, [name]: value }));
+  };
+
+
   // store timeout so we can clean up on unmount
   const adverbTimeoutRef = useRef<number | null>(null);
   const firstRunRef = useRef(true);
@@ -237,11 +264,11 @@ useEffect(() => {
           <p className="section__text">
             Cheer Up! is a beachy indie-math rock band from Charlotte, North Carolina. 
             The project is lead by two songwriting brothers, Andrew (vocals) and Reno (guitar/vocals), 
-            joined by Ramen (drums), Joaco (bass), and David (guitar). 
+            Joaco (bass), and David (guitar). 
           </p>
             <></>
           <p className="section__text">
-            Their latest single, “Henry J. Fate,” has brought new attention to Cheer Up! along for 40k+ streams.
+            Their latest single, “Henry J. Fate,” has brought new attention to Cheer Up! along for 50k+ streams.
             
           </p>
           <div className="embed embed--spotify">
@@ -478,6 +505,145 @@ useEffect(() => {
             cheerupbang [at] gmail [dot] com
           </button>
         </p>
+
+        <button
+          type="button"
+          className="mailing-toggle"
+          onClick={() => setMailingOpen((v) => !v)}
+          aria-expanded={mailingOpen}
+          aria-controls="mailing-list-panel"
+        >
+          JOIN THE MAILING LIST
+        </button>
+
+        <div
+          id="mailing-list-panel"
+          className={`mailing-panel ${mailingOpen ? "mailing-panel--open" : ""}`}
+        >
+          <p className="mailing-note">
+            We’ll only use this to send occasional free stickers / updates.
+          </p>
+
+          <form
+            className="mailing-form"
+            onSubmit={(e) => {
+              e.preventDefault();
+              // for now just simulate submit until your function is deployed
+              setMailingStatus("success");
+              setTimeout(() => {
+                setMailingStatus("idle");
+                setMailingOpen(false);
+              }, 2000);
+
+            }}
+          >
+            {/* honeypot */}
+            <input
+              type="text"
+              name="company"
+              value={mailingForm.company}
+              onChange={handleMailingChange}
+              className="hp-field"
+              tabIndex={-1}
+              autoComplete="off"
+            />
+
+            <div className="mailing-row">
+              <input
+                name="first_name"
+                placeholder="First name"
+                value={mailingForm.first_name}
+                onChange={handleMailingChange}
+                autoComplete="given-name"
+              />
+              <input
+                name="last_name"
+                placeholder="Last name"
+                value={mailingForm.last_name}
+                onChange={handleMailingChange}
+                autoComplete="family-name"
+              />
+            </div>
+
+            <input
+              name="email"
+              placeholder="Email address *"
+              value={mailingForm.email}
+              onChange={handleMailingChange}
+              autoComplete="email"
+              required
+            />
+
+            <input
+              name="address1"
+              placeholder="Address line 1 *"
+              value={mailingForm.address1}
+              onChange={handleMailingChange}
+              autoComplete="address-line1"
+              required
+            />
+
+            <input
+              name="address2"
+              placeholder="Address line 2"
+              value={mailingForm.address2}
+              onChange={handleMailingChange}
+              autoComplete="address-line2"
+            />
+
+            <div className="mailing-row">
+              <input
+                name="city"
+                placeholder="City *"
+                value={mailingForm.city}
+                onChange={handleMailingChange}
+                autoComplete="address-level2"
+                required
+              />
+              <input
+                name="state"
+                placeholder="State"
+                value={mailingForm.state}
+                onChange={handleMailingChange}
+                autoComplete="address-level1"
+              />
+            </div>
+
+            <div className="mailing-row">
+              <input
+                name="postal_code"
+                placeholder="ZIP / Postal code *"
+                value={mailingForm.postal_code}
+                onChange={handleMailingChange}
+                autoComplete="postal-code"
+                required
+              />
+              <input
+                name="country"
+                placeholder="Country *"
+                value={mailingForm.country}
+                onChange={handleMailingChange}
+                autoComplete="country-name"
+                required
+              />
+            </div>
+
+            <input
+              name="phone"
+              placeholder="Phone (optional)"
+              value={mailingForm.phone}
+              onChange={handleMailingChange}
+              autoComplete="tel"
+            />
+
+            <button type="submit" className="mailing-submit">
+              Join
+            </button>
+
+            {mailingStatus === "success" && <div className="mailing-ok">You’re in. ❤️</div>}
+            {mailingStatus === "error" && <div className="mailing-err">{mailingError || "Something broke."}</div>}
+          </form>
+        </div>
 
         {/* icons as the final “outro” row */}
         <SocialLinks links={links} className="home__links home__links--footer" />
