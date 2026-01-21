@@ -5,6 +5,13 @@ body {
   padding: 0;
   background: #000;   /* black background instead of white */
 }
+/* Prevent width/padding from causing overlap in grids */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
 
 /* Remove the centered, max-width container */
 #root {
@@ -539,6 +546,11 @@ html {
   grid-template-columns: 1fr 1fr;
   gap: 0.65rem;
 }
+
+.mailing-row > * {
+  min-width: 0; /* critical for grid children so they can shrink */
+}
+
 
 @media (max-width: 420px) {
   .mailing-row {

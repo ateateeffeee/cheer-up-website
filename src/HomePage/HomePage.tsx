@@ -64,6 +64,8 @@ export default function HomePage() {
 
   const [mailingStatus, setMailingStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
   const [mailingError, setMailingError] = useState<string>("");
+  const firstNameInputRef = useRef<HTMLInputElement | null>(null);
+
 
   const handleMailingChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
@@ -169,19 +171,34 @@ useEffect(() => {
 
   const openMailingListFromMenu = (e?: MouseEvent<HTMLAnchorElement>) => {
   e?.preventDefault();
+  openMailingListAndFocus(true);
+  };
 
-  // close the menu immediately so it doesn't cover the page during scroll
-  setMenuOpen(false);
+      const openMailingListAndFocus = (closeMenu: boolean) => {
+      if (closeMenu) setMenuOpen(false);
 
-  // force open the panel
-  setMailingOpen(true);
+      setMailingOpen((wasOpen) => {
+        const willOpen = !wasOpen;
 
-  // scroll after state updates flush (next tick)
-  window.setTimeout(() => {
-    const el = document.getElementById("contact");
-    el?.scrollIntoView({ behavior: "smooth", block: "start" });
-  }, 50);
-};
+        if (willOpen) {
+          // scroll + focus after layout/animation starts
+          window.setTimeout(() => {
+            document.getElementById("contact")?.scrollIntoView({
+              behavior: "smooth",
+              block: "start",
+            });
+
+            window.setTimeout(() => {
+              firstNameInputRef.current?.focus();
+            }, 250);
+          }, 50);
+        }
+
+        return willOpen;
+      });
+    };
+
+
 
 
   const handleMenuClick = (id: string, e?: MouseEvent<HTMLAnchorElement>) => {
@@ -261,16 +278,20 @@ useEffect(() => {
           <ul className="desktop-nav__list">
             {menuItems.map((item) => (
               <li key={item.id} className="desktop-nav__item">
-                <a
-                  href={`#${item.id}`}
-                  onClick={(e) => handleMenuClick(item.id, e)}
-                >
+                <a href={`#${item.id}`} onClick={(e) => handleMenuClick(item.id, e)}>
                   {item.label}
                 </a>
               </li>
             ))}
+
+            <li className="desktop-nav__item">
+              <a href="#contact" onClick={openMailingListFromMenu}>
+                Join the mailing list
+              </a>
+            </li>
           </ul>
         </nav>
+
 
           {/* SOCIAL ICONS */}
           <SocialLinks links={links} />
@@ -530,12 +551,13 @@ useEffect(() => {
         <button
           type="button"
           className="mailing-toggle"
-          onClick={() => setMailingOpen((v) => !v)}
+          onClick={() => openMailingListAndFocus(false)}
           aria-expanded={mailingOpen}
           aria-controls="mailing-list-panel"
         >
           JOIN THE MAILING LIST
         </button>
+
 
         <div
           id="mailing-list-panel"
@@ -547,16 +569,36 @@ useEffect(() => {
 
           <form
             className="mailing-form"
-            onSubmit={(e) => {
-              e.preventDefault();
-              // for now just simulate submit until your function is deployed
+            onSubmit={async (e) => {
+            e.preventDefault();
+
+            try {
+              setMailingStatus("submitting");
+              setMailingError("");
+
+              const res = await fetch("/.netlify/functions/fan-signup", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(mailingForm),
+              });
+
+              const json = await res.json().catch(() => ({}));
+
+              if (!res.ok) {
+                throw new Error(json?.message || `Request failed (${res.status})`);
+              }
+
               setMailingStatus("success");
               setTimeout(() => {
                 setMailingStatus("idle");
                 setMailingOpen(false);
-              }, 2000);
+              }, 1200);
+            } catch (err: any) {
+              setMailingStatus("error");
+              setMailingError(err?.message || "Something broke.");
+            }
+          }}
 
-            }}
           >
             {/* honeypot */}
             <input
@@ -571,6 +613,7 @@ useEffect(() => {
 
             <div className="mailing-row">
               <input
+                ref={firstNameInputRef}
                 name="first_name"
                 placeholder="First name"
                 value={mailingForm.first_name}

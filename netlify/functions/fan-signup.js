@@ -1,19 +1,33 @@
-import { createClient } from "@supabase/supabase-js";
+const { createClient } = require("@supabase/supabase-js");
 
-const supabase = createClient(
-  process.env.SUPABASE_URL,
-  process.env.SUPABASE_SERVICE_ROLE_KEY
-);
+const supabaseUrl = process.env.SUPABASE_URL;
+const serviceRoleKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
 
-export default async (req) => {
-  if (req.method !== "POST") {
+const supabase = createClient(supabaseUrl, serviceRoleKey);
+
+exports.handler = async (event) => {
+
+  console.log("SUPABASE_URL set?", !!process.env.SUPABASE_URL);
+console.log("SERVICE_ROLE set?", !!process.env.SUPABASE_SERVICE_ROLE_KEY);
+console.log("URL prefix:", (process.env.SUPABASE_URL || "").slice(0, 25));
+console.log("KEY prefix:", (process.env.SUPABASE_SERVICE_ROLE_KEY || "").slice(0, 10));
+
+  if (event.httpMethod !== "POST") {
     return { statusCode: 405, body: "Method Not Allowed" };
   }
 
   try {
-    const data = JSON.parse(req.body || "{}");
+    if (!supabaseUrl || !serviceRoleKey) {
+      return {
+        statusCode: 500,
+        body: JSON.stringify({
+          error: "Missing SUPABASE_URL or SUPABASE_SERVICE_ROLE_KEY",
+        }),
+      };
+    }
 
-    // honeypot (bots fill this)
+    const data = JSON.parse(event.body || "{}");
+
     if (data.company) {
       return { statusCode: 200, body: JSON.stringify({ ok: true }) };
     }
@@ -60,6 +74,12 @@ export default async (req) => {
 
     return { statusCode: 200, body: JSON.stringify({ ok: true }) };
   } catch (e) {
-    return { statusCode: 500, body: JSON.stringify({ error: e.message }) };
+    return {
+      statusCode: 500,
+      body: JSON.stringify({
+        error: e?.message || String(e),
+        details: e,
+      }),
+    };
   }
 };
