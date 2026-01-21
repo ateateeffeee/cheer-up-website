@@ -5,6 +5,13 @@ body {
   padding: 0;
   background: #000;   /* black background instead of white */
 }
+/* Prevent width/padding from causing overlap in grids */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
 
 /* Remove the centered, max-width container */
 #root {
@@ -471,6 +478,114 @@ html {
 
 .desktop-nav {
   display: none;
+}
+
+.mailing-toggle {
+  margin-top: 0.75rem;
+  background: none;
+  border: none;
+  padding: 0;
+  color: #fff;
+  font: inherit;
+  text-decoration: underline;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.mailing-toggle:hover,
+.mailing-toggle:focus-visible {
+  text-decoration: none;
+}
+
+.mailing-panel {
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transform: translateY(-6px);
+  transition: max-height 250ms ease, opacity 200ms ease, transform 200ms ease;
+}
+
+.mailing-panel--open {
+  max-height: 1000px; /* big enough for the form */
+  opacity: 1;
+  transform: translateY(0);
+  margin-top: 1rem;
+}
+
+.mailing-note {
+  font-size: 0.9rem;
+  opacity: 0.9;
+  margin: 0 0 0.75rem;
+}
+
+.mailing-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+
+.mailing-form input,
+.mailing-form select {
+  width: 100%;
+  padding: 0.7rem 0.85rem;
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,0.25);
+  background: rgba(0,0,0,0.45);
+  color: #fff;
+  outline: none;
+}
+
+.mailing-form input:focus,
+.mailing-form select:focus {
+  border-color: rgba(255,255,255,0.7);
+}
+
+.mailing-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.65rem;
+}
+
+.mailing-row > * {
+  min-width: 0; /* critical for grid children so they can shrink */
+}
+
+
+@media (max-width: 420px) {
+  .mailing-row {
+    grid-template-columns: 1fr;
+  }
+}
+
+.mailing-submit {
+  margin-top: 0.25rem;
+  padding: 0.75rem 1rem;
+  border-radius: 9999px;
+  border: 1px solid rgba(255,255,255,0.35);
+  background: rgba(255,255,255,0.12);
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  cursor: pointer;
+}
+
+.mailing-submit:hover,
+.mailing-submit:focus-visible {
+  background: rgba(255,255,255,0.2);
+}
+
+.mailing-ok,
+.mailing-err {
+  margin-top: 0.25rem;
+  font-size: 0.9rem;
+}
+
+.hp-field {
+  position: absolute;
+  left: -9999px;
+  opacity: 0;
+  height: 0;
 }
 
 
