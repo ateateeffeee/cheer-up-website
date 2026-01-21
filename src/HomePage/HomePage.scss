@@ -588,6 +588,28 @@ html {
   height: 0;
 }
 
+.mailing-success-block {
+  text-align: center;
+  padding: 32px 16px;
+
+  .check {
+    font-size: 2.5rem;
+    color: #3cc878;
+    margin-bottom: 12px;
+  }
+
+  h3 {
+    margin: 0 0 6px;
+    font-size: 1.3rem;
+  }
+
+  p {
+    opacity: 0.85;
+    font-size: 0.95rem;
+  }
+}
+
+
 
 /* ===== DESKTOP OVERRIDES AT BOTTOM ===== */
 @media (min-width: 768px) {

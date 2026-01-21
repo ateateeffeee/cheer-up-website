@@ -149,6 +149,32 @@ useEffect(() => {
     };
   }, []);
 
+      useEffect(() => {
+        const openFromHash = () => {
+          if (window.location.hash === "#mailing-list") {
+            setMailingOpen(true);
+
+            window.setTimeout(() => {
+              document.getElementById("contact")?.scrollIntoView({
+                behavior: "smooth",
+                block: "start",
+              });
+
+              window.setTimeout(() => {
+                firstNameInputRef.current?.focus();
+              }, 250);
+            }, 50);
+          }
+        };
+
+        // run once on initial load
+        openFromHash();
+
+        // run whenever hash changes (SPA + link clicks)
+        window.addEventListener("hashchange", openFromHash);
+        return () => window.removeEventListener("hashchange", openFromHash);
+      }, []);
+
   const links = [
     { label: "Instagram",   href: "https://www.instagram.com/cheerupband", cls: "icon--instagram" },
     { label: "Spotify",     href: "https://open.spotify.com/playlist/5x0uZO2RAgtv8LR9tY9kCM?si=TPEYAVQwRPq0yNHjqp1osA", cls: "icon--spotify" },
@@ -170,7 +196,7 @@ useEffect(() => {
   ];
 
   const openMailingListFromMenu = (e?: MouseEvent<HTMLAnchorElement>) => {
-  e?.preventDefault();
+  // e?.preventDefault();
   openMailingListAndFocus(true);
   };
 
@@ -253,7 +279,7 @@ useEffect(() => {
               ))}
 
               <li className="mobile-menu__item">
-                <a href="#contact" onClick={openMailingListFromMenu}>
+                <a href="#mailing-list" onClick={openMailingListFromMenu}>
                   JOIN THE MAILING LIST
                 </a>
               </li>
@@ -285,7 +311,7 @@ useEffect(() => {
             ))}
 
             <li className="desktop-nav__item">
-              <a href="#contact" onClick={openMailingListFromMenu}>
+              <a href="#mailing-list" onClick={openMailingListFromMenu}>
                 Join the mailing list
               </a>
             </li>
@@ -548,6 +574,7 @@ useEffect(() => {
           </button>
         </p>
 
+        <div id="mailing-list" />
         <button
           type="button"
           className="mailing-toggle"
@@ -592,7 +619,7 @@ useEffect(() => {
               setTimeout(() => {
                 setMailingStatus("idle");
                 setMailingOpen(false);
-              }, 1200);
+              }, 3500);
             } catch (err: any) {
               setMailingStatus("error");
               setMailingError(err?.message || "Something broke.");
@@ -600,6 +627,8 @@ useEffect(() => {
           }}
 
           >
+                    {mailingStatus !== "success" && (
+          <>
             {/* honeypot */}
             <input
               type="text"
@@ -700,12 +729,23 @@ useEffect(() => {
               autoComplete="tel"
             />
 
-            <button type="submit" className="mailing-submit">
-              Join
+            <button type="submit" className="mailing-submit" disabled={mailingStatus === "submitting"}>
+              {mailingStatus === "submitting" ? "Joining..." : "Join"}
             </button>
 
-            {mailingStatus === "success" && <div className="mailing-ok">You’re in.</div>}
-            {mailingStatus === "error" && <div className="mailing-err">{mailingError || "Something broke."}</div>}
+            {mailingStatus === "error" && (
+              <div className="mailing-err">{mailingError || "Something broke."}</div>
+            )}
+          </>
+        )}
+
+        {mailingStatus === "success" && (
+          <div className="mailing-success-block" role="status" aria-live="polite">
+            <div className="check">✓</div>
+            <h3>You’re in!</h3>
+          </div>
+        )}
+
           </form>
         </div>
 
