@@ -669,11 +669,10 @@ useEffect(() => {
 
             <input
               name="address1"
-              placeholder="Address line 1 *"
+              placeholder="Address line 1"
               value={mailingForm.address1}
               onChange={handleMailingChange}
               autoComplete="address-line1"
-              required
             />
 
             <input
@@ -687,11 +686,10 @@ useEffect(() => {
             <div className="mailing-row">
               <input
                 name="city"
-                placeholder="City *"
+                placeholder="City"
                 value={mailingForm.city}
                 onChange={handleMailingChange}
                 autoComplete="address-level2"
-                required
               />
               <input
                 name="state"
@@ -705,25 +703,23 @@ useEffect(() => {
             <div className="mailing-row">
               <input
                 name="postal_code"
-                placeholder="ZIP / Postal code *"
+                placeholder="ZIP / Postal code"
                 value={mailingForm.postal_code}
                 onChange={handleMailingChange}
                 autoComplete="postal-code"
-                required
               />
               <input
                 name="country"
-                placeholder="Country *"
+                placeholder="Country"
                 value={mailingForm.country}
                 onChange={handleMailingChange}
                 autoComplete="country-name"
-                required
               />
             </div>
 
             <input
               name="phone"
-              placeholder="Phone (optional)"
+              placeholder="Phone"
               value={mailingForm.phone}
               onChange={handleMailingChange}
               autoComplete="tel"
