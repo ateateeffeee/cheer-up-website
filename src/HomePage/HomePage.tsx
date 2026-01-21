@@ -704,7 +704,7 @@ useEffect(() => {
               Join
             </button>
 
-            {mailingStatus === "success" && <div className="mailing-ok">You’re in. ❤️</div>}
+            {mailingStatus === "success" && <div className="mailing-ok">You’re in.</div>}
             {mailingStatus === "error" && <div className="mailing-err">{mailingError || "Something broke."}</div>}
           </form>
         </div>
