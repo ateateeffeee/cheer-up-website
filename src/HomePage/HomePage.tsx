@@ -13,6 +13,8 @@ import tikTokLogo     from "../assets/icons/tik-tok-logo.svg";
 
 import cuWhiteLogo from "../assets/pics/cu-white-logo.png";
 import boysHunched from "../assets/pics/boys-hunched.jpg";
+import brothasBar from "../assets/pics/brothas-bar.jpg";
+import groovin from "../assets/pics/groovin.jpg";
 import milestone2024 from "../assets/pics/milestone-2024.jpg";
 import boysStandingInStar from "../assets/pics/boys-standing-in-star.jpg";
 
@@ -179,7 +181,7 @@ useEffect(() => {
     { label: "Instagram",   href: "https://www.instagram.com/cheerupband", cls: "icon--instagram" },
     { label: "Spotify",     href: "https://open.spotify.com/playlist/5x0uZO2RAgtv8LR9tY9kCM?si=TPEYAVQwRPq0yNHjqp1osA", cls: "icon--spotify" },
     { label: "Apple Music", href: "https://music.apple.com/us/artist/cheer-up/1837211582", cls: "icon--apple" },
-    { label: "Bandcamp",    href: "https://millhouserecords.bandcamp.com/track/henry-j-fate", cls: "icon--bandcamp" },
+    { label: "Bandcamp",    href: "https://cheerupbang.bandcamp.com/", cls: "icon--bandcamp" },
     { label: "YouTube",     href: "https://www.youtube.com/watch?v=QTPSs8EEIG0", cls: "icon--youtube" },
     { label: "Facebook",    href: "https://www.facebook.com/CheerUpBang/", cls: "icon--facebook" },
     { label: "TikTok",      href: "https://www.tiktok.com/@cheerupbang", cls: "icon--tikTok" },
@@ -243,7 +245,8 @@ useEffect(() => {
       <section className="home__hero">
         {/* full-screen band photo in the background */}
         <img
-          src={boysHunched}
+          // src={boysHunched}
+          src={brothasBar}
           alt="The boys"
           className="home__hero-photo"
         />
@@ -296,7 +299,7 @@ useEffect(() => {
                 className="home__logo"
               />
             </h1>
-            <p className="home__subtitle">beachy indie-math rock</p>
+            <p className="home__subtitle">DIY Indie Rock</p>
           </header>
 
         {/* DESKTOP NAV (hidden on mobile via CSS) */}
@@ -336,7 +339,7 @@ useEffect(() => {
           </p>
             <></>
           <p className="section__text">
-            Their latest single, “Henry J. Fate,” has brought new attention to Cheer Up! along for 50k+ streams.
+            One of their latest singles, “Henry J. Fate,” has brought new attention to Cheer Up! surpassing 70k streams.
             
           </p>
           <div className="embed embed--spotify">
@@ -365,7 +368,7 @@ useEffect(() => {
               data-testid="embed-iframe"
               title="Cheer Up! Playlist on Spotify"
               style={{ borderRadius: 12 }}
-              src="https://open.spotify.com/embed/playlist/5x0uZO2RAgtv8LR9tY9kCM?utm_source=generator"
+              src="https://open.spotify.com/embed/playlist/4plkLbAMlWwIFDe6xqDK2W?utm_source=generator"
               width="100%"
               height="352"
               frameBorder="0"
@@ -446,7 +449,8 @@ useEffect(() => {
             <h2 className="section__title">Shows</h2>
                 <div className="shows-banner">
                   <img
-                    src={milestone2024}
+                    // src={milestone2024}
+                    src={groovin}
                     alt="Cheer Up! live at The Milestone, 2024"
                     className="shows-banner__image"
                   />
