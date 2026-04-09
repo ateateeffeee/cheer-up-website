@@ -27,6 +27,8 @@ import adverbsData from "../utils/adverbs.json"
 
 type AdverbFile = { adverbs: string[] };
 
+const merchHref = "https://millhousemerch.com/search?q=Cheer+Up%21";
+
 function getRandomAdverb(prev?: string): string {
   const { adverbs } = adverbsData as AdverbFile;
   if (!adverbs || adverbs.length === 0) return prev ?? "frick";
@@ -188,14 +190,15 @@ useEffect(() => {
     { label: "Merch",       href: "https://millhousemerch.com/search?q=Cheer+Up%21", cls: "icon--merch" },
   ];
 
-  const menuItems = [
-    { label: `Cheer the ${menuAdverb} Up!`, id: "home" },
-    { label: "About",  id: "about" },
-    { label: "Music",  id: "music" },
-    { label: "Videos", id: "videos" },
-    { label: "Shows",  id: "shows" },
-    { label: "Contact", id: "contact" },
-  ];
+const menuItems = [
+  { label: `Cheer the ${menuAdverb} Up!`, id: "home" },
+  { label: "About",  id: "about" },
+  { label: "Music",  id: "music" },
+  { label: "Merch",  id: "merch", external: true },
+  { label: "Videos", id: "videos" },
+  { label: "Shows",  id: "shows" },
+  { label: "Contact", id: "contact" },
+];
 
   const openMailingListFromMenu = (e?: MouseEvent<HTMLAnchorElement>) => {
   // e?.preventDefault();
@@ -275,7 +278,15 @@ useEffect(() => {
             <ul className="mobile-menu__list">
               {menuItems.map((item) => (
                 <li key={item.label} className="mobile-menu__item">
-                  <a href={`#${item.id}`} onClick={(e) => handleMenuClick(item.id, e)}>
+                  <a
+                    href={item.external ? merchHref : `#${item.id}`}
+                    onClick={(e) => {
+                      if (item.external) return; // let browser handle it
+                      handleMenuClick(item.id, e);
+                    }}
+                    target={item.external ? "_blank" : undefined}
+                    rel={item.external ? "noreferrer" : undefined}
+                  >
                     {item.label}
                   </a>
                 </li>
@@ -306,11 +317,19 @@ useEffect(() => {
         <nav className="desktop-nav" aria-label="Main navigation">
           <ul className="desktop-nav__list">
             {menuItems.map((item) => (
-              <li key={item.id} className="desktop-nav__item">
-                <a href={`#${item.id}`} onClick={(e) => handleMenuClick(item.id, e)}>
-                  {item.label}
-                </a>
-              </li>
+              <li key={item.label} className="desktop-nav__item">
+                  <a
+                    href={item.external ? merchHref : `#${item.id}`}
+                    onClick={(e) => {
+                      if (item.external) return; // let browser handle it
+                      handleMenuClick(item.id, e);
+                    }}
+                    target={item.external ? "_blank" : undefined}
+                    rel={item.external ? "noreferrer" : undefined}
+                  >
+                    {item.label}
+                  </a>
+                </li>
             ))}
 
             <li className="desktop-nav__item">
