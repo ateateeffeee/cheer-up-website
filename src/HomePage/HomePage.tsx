@@ -354,11 +354,11 @@ const menuItems = [
           <p className="section__text">
             Cheer Up! is a beachy indie-math rock band from Charlotte, North Carolina. 
             The project is lead by two songwriting brothers, Andrew (vocals) and Reno (guitar/vocals), 
-            Joaco (bass), and David (guitar). 
+            David (bass), Jay (drums), and Joaco (guitar). 
           </p>
             <></>
           <p className="section__text">
-            One of their latest singles, “Henry J. Fate,” has brought new attention to Cheer Up! surpassing 70k streams.
+            One of their latest singles, “Henry J. Fate,” has brought new attention to Cheer Up! surpassing 90k streams.
             
           </p>
           <div className="embed embed--spotify">
@@ -410,7 +410,7 @@ const menuItems = [
       <div className="video-embed video-embed--tall">
         <div className="video-embed__inner">
           <iframe
-            src="https://www.youtube.com/embed/en4ntRV88ng?si=jrWb5IcEAqV5TLdu"
+            src="https://youtube.com/embed/f3RHDD999sY?si=_rjgJPXx-XiDgOAQ"
             title="Cheer Up! – live short 1"
             frameBorder={0}
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
