@@ -27,7 +27,7 @@ import logoWhiteOutlined from "../assets/pics/media assets/logos/cheer-up-white-
 import logoWhite from "../assets/pics/media assets/logos/cheer-up-white-logo.png";
 
 import mediaAndrewDancing from "../assets/pics/media assets/photos/andrew-dancing.jpg";
-import mediaBrewingWide from "../assets/pics/media assets/photos/brewing-wide-shot.JPG";
+import mediaBrewingWide from "../assets/pics/media assets/photos/brewing-wide-shot.jpg";
 import mediaBrothasBar from "../assets/pics/media assets/photos/brothas-bar.jpg";
 import mediaMilestoneWide from "../assets/pics/media assets/photos/milestone-wide-shot.jpg";
 import mediaSittingStarlight from "../assets/pics/media assets/photos/sitting-at-starlight.jpg";
