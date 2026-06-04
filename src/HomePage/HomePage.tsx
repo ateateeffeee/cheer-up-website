@@ -18,6 +18,22 @@ import groovin from "../assets/pics/groovin.jpg";
 import milestone2024 from "../assets/pics/milestone-2024.jpg";
 import boysStandingInStar from "../assets/pics/boys-standing-in-star.jpg";
 
+import henryJFateArtwork from "../assets/pics/media assets/artwork/henry-j-fate.png";
+import rewindArtwork from "../assets/pics/media assets/artwork/Rewind.jpg";
+
+import logoBlackOutlined from "../assets/pics/media assets/logos/cheer-up-black-logo-outlined.png";
+import logoBlack from "../assets/pics/media assets/logos/cheer-up-black-logo.png";
+import logoWhiteOutlined from "../assets/pics/media assets/logos/cheer-up-white-logo-outlined.png";
+import logoWhite from "../assets/pics/media assets/logos/cheer-up-white-logo.png";
+
+import mediaAndrewDancing from "../assets/pics/media assets/photos/andrew-dancing.jpg";
+import mediaBrewingWide from "../assets/pics/media assets/photos/brewing-wide-shot.JPG";
+import mediaBrothasBar from "../assets/pics/media assets/photos/brothas-bar.jpg";
+import mediaMilestoneWide from "../assets/pics/media assets/photos/milestone-wide-shot.jpg";
+import mediaSittingStarlight from "../assets/pics/media assets/photos/sitting-at-starlight.jpg";
+import mediaStandingStar from "../assets/pics/media assets/photos/standing-in-star.jpg";
+import mediaStanding from "../assets/pics/media assets/photos/standing.jpg";
+
 
 import SocialLinks from "../SocialLinks/SocialLinks";
 
@@ -50,6 +66,7 @@ export default function HomePage() {
 
     
   const [mailingOpen, setMailingOpen] = useState(false);
+  const [showAllPressPhotos, setShowAllPressPhotos] = useState(false);
 
   const [mailingForm, setMailingForm] = useState({
     first_name: "",
@@ -192,12 +209,39 @@ useEffect(() => {
 
 const menuItems = [
   { label: `Cheer the ${menuAdverb} Up!`, id: "home" },
-  { label: "About",  id: "about" },
-  { label: "Music",  id: "music" },
-  { label: "Merch",  id: "merch", external: true },
+  { label: "About", id: "about" },
+  { label: "Music", id: "music" },
+  { label: "Merch", id: "merch", external: true },
   { label: "Videos", id: "videos" },
-  { label: "Shows",  id: "shows" },
+  { label: "Shows", id: "shows" },
+  { label: "Media Assets", id: "media-assets" },
   { label: "Contact", id: "contact" },
+];
+
+const mediaLogos = [
+  { title: "White Logo Outlined", src: logoWhiteOutlined, type: "Transparent PNG" },
+  { title: "White Logo", src: logoWhite, type: "Transparent PNG" },
+  { title: "Black Logo Outlined", src: logoBlackOutlined, type: "Transparent PNG" },
+  { title: "Black Logo", src: logoBlack, type: "Transparent PNG" },
+];
+
+const mediaPhotos = [
+  { title: "Brothas Bar", src: mediaBrothasBar, type: "Press Photo" },
+  { title: "Brewing Wide Shot", src: mediaBrewingWide, type: "Live Photo" },
+  { title: "Standing in Star", src: mediaStandingStar, type: "Press Photo" },
+  { title: "Standing", src: mediaStanding, type: "Press Photo" },
+  { title: "Milestone Wide Shot", src: mediaMilestoneWide, type: "Live Photo" },
+  { title: "Andrew Dancing", src: mediaAndrewDancing, type: "Live Photo" },
+  { title: "Sitting at Starlight", src: mediaSittingStarlight, type: "Press Photo" },
+];
+
+const visibleMediaPhotos = showAllPressPhotos
+  ? mediaPhotos
+  : mediaPhotos.slice(0, 3);
+
+const mediaArtwork = [
+  { title: "Henry J. Fate Artwork", src: henryJFateArtwork, type: "Artwork" },
+  { title: "Rewind Artwork", src: rewindArtwork, type: "Artwork" },
 ];
 
   const openMailingListFromMenu = (e?: MouseEvent<HTMLAnchorElement>) => {
@@ -241,6 +285,32 @@ const menuItems = [
     }
     setMenuOpen(false);
   };
+
+const renderAssetCards = (
+  assets: { title: string; src: string; type: string }[]
+) => (
+  <div className="media-assets__grid">
+    {assets.map((asset) => (
+      <article className="media-card" key={asset.title}>
+        <img
+          src={asset.src}
+          alt={asset.title}
+          className="media-card__image"
+        />
+
+        <a
+          href={asset.src}
+          download
+          className="media-card__download-icon"
+          aria-label={`Download ${asset.title}`}
+          title={`Download ${asset.title}`}
+        >
+          ↓
+        </a>
+      </article>
+    ))}
+  </div>
+);
 
   return (
     <main className={`home ${menuOpen ? "home--menu-open" : ""}`} id="home">
@@ -567,6 +637,68 @@ const menuItems = [
           </div>
         </section>
 
+
+<section id="media-assets" className="section section--media-assets">
+  <div className="section__inner">
+    <h2 className="section__title">Media Assets</h2>
+
+    <p className="section__text">
+  Download logos, photos, artwork, and promotional assets.
+</p>
+
+    <a
+      href="/media-assets/cheer-up-media-kit.zip"
+      download
+      className="media-assets__download-all"
+    >
+      Download Full Media Kit (.zip)
+    </a>
+
+    <p className="section__text media-assets__note">
+      Need something else? Email{" "}
+      <button
+        type="button"
+        className="contact-email"
+        onClick={() => {
+          const user = "cheerupbang";
+          const domain = "gmail.com";
+          window.location.href = `mailto:${user}@${domain}`;
+        }}
+      >
+        cheerupbang [at] gmail [dot] com
+      </button>
+    </p>
+
+    <div className="media-assets__group">
+      <h3 className="media-assets__heading">Logos</h3>
+      {renderAssetCards(mediaLogos)}
+    </div>
+
+    <div className="media-assets__group">
+  <div className="media-assets__heading-row">
+    <h3 className="media-assets__heading">Press Photos</h3>
+
+    {mediaPhotos.length > 3 && (
+      <button
+        type="button"
+        className="media-assets__view-toggle"
+        onClick={() => setShowAllPressPhotos((open) => !open)}
+        aria-expanded={showAllPressPhotos}
+      >
+        {showAllPressPhotos ? "Show fewer" : "View all"}
+      </button>
+    )}
+  </div>
+
+  {renderAssetCards(visibleMediaPhotos)}
+</div>
+
+    <div className="media-assets__group">
+      <h3 className="media-assets__heading">Artwork</h3>
+      {renderAssetCards(mediaArtwork)}
+    </div>
+  </div>
+</section>
 
 <section id="contact" className="section section--contact">
   <div className="contact-hero">
